@@ -1,0 +1,17 @@
+﻿# Virtual environment — never push this (it's huge and machine-specific)
+venv/
+
+# API keys — NEVER push this
+.env
+
+# Python cache files — auto-generated, not needed
+__pycache__/
+*.pyc
+*.pyo
+
+# Run history — contains output data, optional to push
+db/runs.json
+
+# OS files
+.DS_Store
+Thumbs.db

@@ -1,0 +1,43 @@
+{
+  "name": "competitor_monitor",
+  "description": "Monitor competitor activity and generate a brief",
+  "nodes": [
+    {
+      "id": "search_competitor",
+      "type": "scrape",
+      "config": {
+        "query": "OpenAI new product announcement",
+        "num_results": 5,
+        "output_key": "raw_text"
+      }
+    },
+    {
+      "id": "extract_claims",
+      "type": "ai",
+      "config": {
+        "prompt": "Extract the 3 most important claims or announcements from the following search results. Format as a numbered list.\n\n{input}",
+        "input_key": "raw_text",
+        "output_key": "key_claims"
+      }
+    },
+    {
+      "id": "generate_brief",
+      "type": "ai",
+      "config": {
+        "prompt": "You are a competitive intelligence analyst. Based on these key claims:\n\n{input}\n\nWrite a 3-paragraph competitive brief with: 1) What they announced, 2) Why it matters, 3) Recommended response.",
+        "input_key": "key_claims",
+        "output_key": "competitive_brief"
+      }
+    },
+    {
+      "id": "trim_brief",
+      "type": "transform",
+      "config": {
+        "operation": "truncate",
+        "input_key": "competitive_brief",
+        "output_key": "final_brief",
+        "max_length": 2000
+      }
+    }
+  ]
+} 

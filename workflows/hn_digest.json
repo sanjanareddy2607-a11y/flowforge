@@ -1,0 +1,52 @@
+{
+  "name": "hn_digest",
+  "description": "Search for AI news, summarize it, score relevance",
+  "nodes": [
+    {
+      "id": "fetch_news",
+      "type": "scrape",
+      "config": {
+        "query": "AI startup news this week",
+        "num_results": 5,
+        "output_key": "raw_text"
+      }
+    },
+    {
+      "id": "summarize",
+      "type": "ai",
+      "config": {
+        "prompt": "You are a tech analyst. Summarize the following news articles in 5 clear bullet points. Focus on key developments, companies, and trends.\n\nArticles:\n{input}",
+        "input_key": "raw_text",
+        "output_key": "summary"
+      }
+    },
+    {
+      "id": "score_relevance",
+      "type": "ai",
+      "config": {
+        "prompt": "Rate the following summary's relevance to AI/ML engineering on a scale of 1-10. Give a score and one-sentence reason. Format: SCORE: X/10\nREASON: ...\n\nSummary:\n{input}",
+        "input_key": "summary",
+        "output_key": "relevance_score"
+      }
+    },
+    {
+      "id": "quality_check",
+      "type": "filter",
+      "config": {
+        "condition": "min_length",
+        "input_key": "summary",
+        "min_length": 100
+      }
+    },
+    {
+      "id": "format_output",
+      "type": "transform",
+      "config": {
+        "operation": "prefix",
+        "input_key": "summary",
+        "output_key": "final_report",
+        "prefix": "=== FlowForge AI Digest ===\n\n"
+      }
+    }
+  ]
+}
