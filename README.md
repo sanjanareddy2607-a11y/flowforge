@@ -135,4 +135,4 @@ curl -X POST http://localhost:8000/run \
 
 ## Author
 
-Built by [Your Name](https://github.com/YOURUSERNAME) as a portfolio project demonstrating AI pipeline engineering, backend architecture, and multi-agent orchestration.
+Built by M Sanjana Reddy (https://github.com/sanjanareddy2607-a11y) as a portfolio project demonstrating AI pipeline engineering, backend architecture, and multi-agent orchestration.
