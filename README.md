@@ -44,9 +44,9 @@ Dashboard UI (real-time pipeline status board)
 | Layer | Technology |
 |---|---|
 | Backend framework | FastAPI + Uvicorn |
-| AI / LLM | Google Gemini API (gemini-1.5-flash) |
+| AI / LLM | Google Gemini API (gemini-2.5-flash) |
 | Web scraping | SerpAPI + httpx |
-| Email delivery | Python smtplib (Gmail SMTP) |
+| Email delivery | RESEND |
 | State persistence | JSON flat-file store |
 | Frontend | Vanilla HTML/CSS/JS |
 | Deployment | Render (PaaS) |
