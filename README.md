@@ -77,9 +77,12 @@ pip install -r requirements.txt
 
 ### 2. Add API keys
 Create a .env file:
-GEMINI_API_KEY=AIzaSyC_jaJRXZud8RITmezle0MbfIkpDfD-Zp0
-SERP_API_KEY=532c99bb468bd419902391ad4bf16f9d4ae5911cb42787fa4a1ce203dc8a1032
+GEMINI_API_KEY=xxx
+SERP_API_KEY=xxx
 EMAIL_SENDER=sanjanareddy2607@gmail.com
+EMIAL_PASSWORD=xxx
+RESEND_API_KEY=xxx
+
 ### 3. Run
 `ash
 uvicorn main:app --reload
