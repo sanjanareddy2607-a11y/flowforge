@@ -1,12 +1,12 @@
 {
   "name": "competitor_monitor",
-  "description": "Monitor competitor activity and generate a brief",
+  "description": "Monitor competitor activity daily with fresh results",
   "nodes": [
     {
       "id": "search_competitor",
       "type": "scrape",
       "config": {
-        "query": "OpenAI new product announcement",
+        "query": "OpenAI new announcement {today}",
         "num_results": 5,
         "output_key": "raw_text"
       }
@@ -24,7 +24,7 @@
       "id": "generate_brief",
       "type": "ai",
       "config": {
-        "prompt": "You are a competitive intelligence analyst. Based on these key claims:\n\n{input}\n\nWrite a 3-paragraph competitive brief with: 1) What they announced, 2) Why it matters, 3) Recommended response.",
+        "prompt": "You are a competitive intelligence analyst. Based on these key claims:\n\n{input}\n\nWrite a 3-paragraph competitive brief covering: 1) What they announced, 2) Why it matters, 3) Recommended response for a competing startup.",
         "input_key": "key_claims",
         "output_key": "competitive_brief"
       }
@@ -38,6 +38,15 @@
         "output_key": "final_brief",
         "max_length": 2000
       }
+    },
+    {
+      "id": "send_email",
+      "type": "email",
+      "config": {
+        "to": "sanjanareddy2607@gmail.com",
+        "subject": "FlowForge Competitor Intelligence Brief",
+        "input_key": "final_brief"
+      }
     }
   ]
-} 
+}

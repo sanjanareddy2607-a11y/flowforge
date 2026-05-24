@@ -1,12 +1,12 @@
 {
   "name": "hn_digest",
-  "description": "Search for AI news, summarize it, score relevance",
+  "description": "Daily AI news digest with fresh results every day",
   "nodes": [
     {
       "id": "fetch_news",
       "type": "scrape",
       "config": {
-        "query": "AI startup news this week",
+        "query": "AI startup funding news {today}",
         "num_results": 5,
         "output_key": "raw_text"
       }
@@ -24,7 +24,7 @@
       "id": "score_relevance",
       "type": "ai",
       "config": {
-        "prompt": "Rate the following summary's relevance to AI/ML engineering on a scale of 1-10. Give a score and one-sentence reason. Format: SCORE: X/10\nREASON: ...\n\nSummary:\n{input}",
+        "prompt": "Rate the following summary relevance to AI/ML engineering on a scale of 1-10. Format exactly like this:\nSCORE: X/10\nREASON: your reason here\n\nSummary:\n{input}",
         "input_key": "summary",
         "output_key": "relevance_score"
       }
@@ -46,6 +46,15 @@
         "input_key": "summary",
         "output_key": "final_report",
         "prefix": "=== FlowForge AI Digest ===\n\n"
+      }
+    },
+    {
+      "id": "send_email",
+      "type": "email",
+      "config": {
+        "to": "sanjanareddy2607@gmail.com",
+        "subject": "FlowForge Daily AI Digest",
+        "input_key": "final_report"
       }
     }
   ]

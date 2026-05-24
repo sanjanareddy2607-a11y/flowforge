@@ -1,4 +1,4 @@
-import os
+content = '''import os
 from google import genai
 from dotenv import load_dotenv
 from nodes.base_node import BaseNode
@@ -26,3 +26,9 @@ class AINode(BaseNode):
             result = f"AI node error: {str(e)}"
 
         return {output_key: result}
+'''
+
+with open('nodes/ai_node.py', 'w') as f:
+    f.write(content)
+
+print('ai_node.py updated successfully')
