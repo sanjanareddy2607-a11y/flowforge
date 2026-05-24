@@ -16,4 +16,6 @@ db/runs.json
 .DS_Store
 Thumbs.db
 
+.env
 .env.txt
+fix_*.py
